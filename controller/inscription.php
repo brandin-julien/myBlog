@@ -2,8 +2,13 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 
+require_once("../model/register.php");
+require_once('../config/conf.php');
+
+
 $errors = array();
 $isFormGood = true;
+$register = new register();
 
 if(!empty($_POST))
 {
@@ -31,16 +36,24 @@ if(!empty($_POST))
         $isFormGood = false;
     }
 
-    /*if($formOK == true) {
-        $success = 'Salut ' . $_POST['username'];
-        $secret = "F2fl/6'tg;do";
+    if(!isset($_POST['verifPassword']) || $_POST['verifPassword'] !== $_POST['password'])
+    {
+        $errors['verifPassword'] = 'Saisissez une vérif identique au mdp<br>';
+        $isFormGood = false;
+    }
 
-        $salt = "48@!alsd";
-        $password = $_POST['password'];
-        $passwordCrypte = sha1(sha1($password) . $salt); // cryptage du password
+    if(!isset($_POST['verifPassword']) || $_POST['verifPassword'] !== $_POST['password'])
+    {
+        $errors['verifPassword'] = 'Saisissez une vérif identique au mdp<br>';
+        $isFormGood = false;
+    }
 
-        echo $passwordCrypte;
-    }*/
+    if(!isset($_POST['verifPassword']) || $_POST['verifPassword'] !== $_POST['password'])
+    {
+        $errors['verifPassword'] = 'Saisissez une vérif identique au mdp<br>';
+        $isFormGood = false;
+    }
+
     if(!$isFormGood)
     {
         http_response_code(400);
@@ -48,14 +61,19 @@ if(!empty($_POST))
     }
     else
     {
-        //$_POST['password'] = sha1($_POST['password']);
-
         $salt = "48@!alsd";
         $password = $_POST['password'];
         $_POST['password'] = sha1(sha1($password) . $salt); // cryptage du password
 
+        /*
+         * faire un trim(htmlentities())
+         */
+
         unset($_POST['verifPassword']);
         echo(json_encode(array('success'=>true, "user"=>$_POST)));
+
+        $insertUsers = $register->insertLogin($pdo);
+
     }
 }
 else

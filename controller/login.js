@@ -2,7 +2,6 @@ $(function () {
     $('form').submit(function () {
         $('#blocErreur').html('');
         $('#blocSuccess').html('');
-
         $.ajax({
             url: '../controller/login.php',
             method: 'POST',
@@ -10,23 +9,17 @@ $(function () {
             dataType: 'json',
 
             success: function(data){
-                console.log('succes');
-                var toPrint = 'username : '+data.user.username+'<br>';
-                toPrint += 'password : '+data.user.password+'<br>';
+                var toPrint = 'Connexion réussis, redirection en cours... '+'<meta http-equiv="refresh" content="0.5; URL=../view/index.php">';
                 $('#blocSuccess').html(toPrint);
             },
 
             error: function(data, status, error) {
-                console.log('error');
-                var toPrint = '';
-                console.log('error2');
-                console.log(data);
-                data = JSON.parse(data.responseText);
-                console.log('error3');
+                var toPrint = 'Error of login or password';
+
+                /*data = JSON.parse(data.responseText);
                 for(var d in data.errors){
-                    console.log('for');
                     toPrint += d+' :'+data.errors[d]+'<br>';
-                }
+                }*/
                 $('#blocErreur').html(toPrint);
             }
         });
