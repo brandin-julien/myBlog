@@ -1,16 +1,15 @@
 $(function () {
-    $('form').submit(function () {
-        $('#blocErreur').html('');
-        $('#blocSuccess').html('');
+    $('form[name="updateProfil"]').submit(function () {
+        $('.errorUpdate').html('');
         $.ajax({
-            url: '../controller/inscription.php',
+            url: '../controller/profil.php',
             method: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
 
             success: function(data){
-                var toPrint = 'Bienvenue '+data.user.username +'<meta http-equiv="refresh" content="0.5; URL=../view/login.php">';
-                $('#blocSuccess').html(toPrint);
+                var toPrint = '<meta http-equiv="refresh" content="0.5; URL=../view/profil.php">';
+                $('.errorUpdate').html(toPrint);
             },
 
             error: function(data, status, error) {
@@ -20,9 +19,9 @@ $(function () {
                 for(var d in data.errors){
                     toPrint += d+' :'+data.errors[d]+'<br>';
                 }
-                $('#blocErreur').html(toPrint);
+                $('.errorUpdate').html(toPrint);
             }
         });
-        return false;
+        //return false;
     });
 });

@@ -9,17 +9,12 @@ $(function () {
             dataType: 'json',
 
             success: function(data){
-                var toPrint = 'Connexion réussis, redirection en cours... '+'<meta http-equiv="refresh" content="0.5; URL=../view/index.php">';
+                var toPrint = 'Connexion rÃ©ussie, redirection en cours... '+'<meta http-equiv="refresh" content="0.5; URL=../view/index.php">';
                 $('#blocSuccess').html(toPrint);
             },
 
             error: function(data, status, error) {
-                var toPrint = 'Error of login or password';
-
-                /*data = JSON.parse(data.responseText);
-                for(var d in data.errors){
-                    toPrint += d+' :'+data.errors[d]+'<br>';
-                }*/
+                var toPrint = 'Erreur de l\'email ou du mot de passe';
                 $('#blocErreur').html(toPrint);
             }
         });

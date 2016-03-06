@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['login'])){
+    header("Location: index.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,16 +54,14 @@
 <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
     <ul class="c-menu__items">
         <li><a href="#" class="c-menu__link">
-            <img class="onClick imgMenuToggle" src="../img/cross.png" alt="">
-            <div class="titleMenu">Séries.com</div>
-        </a>
+                <img class="onClick imgMenuToggle" src="../img/cross.png" alt="">
+                <div class="titleMenu">Séries.com</div>
+            </a>
         </li>
         <li class="c-menu__item"><a href="index.php" class="c-menu__link transition">Accueil</a></li>
         <li class="c-menu__item"><a href="#" class="c-menu__link">Nouveautés</a></li>
         <li class="c-menu__item"><a href="#" class="c-menu__link">Les plus vues</a></li>
         <li class="c-menu__item"><a href="#" class="c-menu__link">Catégories</a></li>
-        <li class="c-menu__item"><a href="createArticle.html" class="c-menu__link transition">Créer un article</a></li>
-        <li class="c-menu__item"><a href="profil.php" class="c-menu__link transition">Mon Compte</a></li>
     </ul>
 </nav>
 
@@ -72,7 +77,7 @@
             <br><span class="descriptionTitle">TOUTES VOS SÉRIES EN ILLIMITÉ</span>
         </a>
     </div>
-    <div class="imgHeader imgAcc"><a class="transition" href="login.html"><img src="../img/account.png" alt=""></a></div>
+    <div class="imgHeader imgAcc"><a class="transition" href="login.php"><img src="../img/account.png" alt=""></a></div>
 
     <div class="menuWeb">
         <div class="menuWebAll"><a class="transition" href="index.php">Accueil</a></div>
@@ -81,9 +86,7 @@
         <hr class="hrHeader">
         <div class="menuWebAll"><a href="#">Populaires</a></div>
         <hr class="hrHeader">
-        <div class="menuWebAll"><a href="#">Catégories</a></div>
-        <hr class="hrHeader">
-        <div class="menuWebAll"><a class="transition" href="login.html">Se connecter</a></div>
+        <div class="menuWebAll"><a class="transition" href="login.php">Se connecter</a></div>
     </div>
 </header>
 
@@ -127,6 +130,9 @@
         <input class="submit" type="submit" value="Envoyer">
         <input class="submit" type="reset" value="Reset">
     </form>
+
+    <div id="blocErreur" class="error"></div>
+    <div id="blocSuccess" class="error"></div>
 
 </main>
 

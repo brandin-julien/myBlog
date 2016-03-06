@@ -1,0 +1,35 @@
+/* FOOTER */
+
+.footer {
+    display: inline-block;
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    color: #bf9c7b;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.contact {
+    display: inline-block;
+    font-size: 0.7rem;
+    margin-top: 15px;
+}
+
+.contact:last-child {
+    margin-right: 15px;
+}
+
+.footerImg {
+    width: 5%;
+    float: right;
+    margin-right: 8px;
+}
+
+.onRight {
+    float: left;
+}
+
+.copyright {
+    margin: 10px 0 15px 0;
+}

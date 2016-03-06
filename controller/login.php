@@ -18,19 +18,19 @@ if(!empty($_POST))
 
     if(!isset($_POST['mail']))
     {
-        $errors['login'] = 'Veuillez saisir un pseudo de 4 caractères minimum';
+        $errors['login'] = 'Veuillez saisir un email';
         $isFormGood = false;
     }
 
     if(!isset($_POST['password']) || strlen($_POST['password']) < 6)
     {
-        $errors['password'] = 'Veuillez saisir un mot de passe de 6 caractères minimum';
+        $errors['password'] = 'Veuillez saisir un mot de passe de 6 caractÃ¨res minimum';
         $isFormGood = false;
     }
 
-    $salt = "48@!alsd";
+    $salt = "akqoekvptkdke";
     $password = $_POST['password'];
-    $_POST['password'] = sha1(sha1($password) . $salt); // cryptage du password
+    $_POST['password'] = sha1(sha1($password) . $salt);
 
     if($info['password'] != $_POST['password'])
     {
@@ -45,7 +45,6 @@ if(!empty($_POST))
     }
     else
     {
-        //stock en sesssion
         $_SESSION['login'] = $info['pseudo'];
         $_SESSION['id'] = $info['id'];
         echo(json_encode(array('success'=>true, "user"=>$_POST)));

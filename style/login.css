@@ -1,0 +1,16 @@
+/* Connexion */
+
+.linkInscription {
+    margin-top: 15px;
+    color: white;
+}
+
+.redirectInscription {
+    text-decoration: underline;
+    color: white;
+}
+
+.error{
+    color: red;
+    margin-top: 35px;
+}

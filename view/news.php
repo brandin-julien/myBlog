@@ -1,12 +1,9 @@
 <?php
-session_start();
 require_once('../config/conf.php');
 require_once('../controller/article.php');
 
-if(isset($_POST['logout'])){
-    unset($_SESSION['login']);
-    unset($_SESSION['id']);
-}
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,11 +108,11 @@ if(isset($_POST['logout'])){
         <div class="menuWebAll"><a href="all.php">Tout les articles</a></div>
         <hr class="hrHeader">
         <?php
-            if(isset($_SESSION['login'])){
-                echo '<div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
+        if(isset($_SESSION['login'])){
+            echo '<div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
                      <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>
                      ';
-            }
+        }
         else{
             echo '<div class="menuWebAll"><a class="transition" href="login.php">Se connecter</a></div>';
         }
@@ -124,15 +121,10 @@ if(isset($_POST['logout'])){
 </header>
 
 <main role="main" class="BebasBold">
-    <div class="newTheme">
-        <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; NOUVEAUTÉS</div>
-        <div class="hrRight"></div>
-    </div>
 
     <?php
     $article = new article();
-    $row = $article->get6Articles($pdo);
+    $row = $article->get9Articles($pdo);
     $i = 0;
 
     while($i <= sizeof($row)-1){
@@ -145,28 +137,6 @@ if(isset($_POST['logout'])){
         $i++;
     }
     ?>
-
-    <div class="newTheme">
-        <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; PLUS &nbsp; VUES</div>
-        <div class="hrRight"></div>
-    </div>
-
-    <?php
-    $row = $article->getPopularArticles($pdo);
-    $i = 0;
-
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
-    ?>
-
 </main>
 
 <footer class="footer SourceSansPro">

@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'Source Sans Pro';
+    src: url('../font/SourceSansPro-Light.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Source Sans Pro Regular';
+    src: url('../font/SourceSansPro-Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasBold';
+    src: url('../font/BebasNeue%20Bold.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasLight';
+    src: url('../font/BebasNeue%20Light.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'BebasRegular';
+    src: url('../font/BebasNeue%20Regular.otf') format('truetype');
+}
+
+.SourceSansPro {
+    font-family: "Source Sans Pro";
+}
+
+.SourceSansProRegular {
+    font-family: "Source Sans Pro Regular";
+}
+
+.BebasBold {
+    font-family: 'BebasBold';
+}
+
+.BebasLight {
+    font-family: 'BebasLight';
+}
+
+.BebasRegular {
+    font-family: 'BebasRegular';
+}
+
+body {
+    background: #222222;
+}
+
+/* Inscription + Connexion */
+
+.submit {
+    width: 30%;
+    border: none;
+    padding: 8px;
+    background: #bf9c7b;
+    color: #222222;
+    margin: 25px 8px 20px 8px;
+    border-radius: 4px;
+    outline: none;
+}
+
+.submit:active {
+    opacity: 0.8;
+}
+
+/* -------------------- */

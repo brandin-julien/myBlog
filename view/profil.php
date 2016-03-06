@@ -1,13 +1,11 @@
 <?php
 session_start();
-require_once('../config/conf.php');
-require_once('../controller/article.php');
-
-if(isset($_POST['logout'])){
-    unset($_SESSION['login']);
-    unset($_SESSION['id']);
+if(!isset($_SESSION['login'])){
+    header("Location: index.php");
+    exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,17 +16,13 @@ if(isset($_POST['logout'])){
     <link type="test/css" rel="stylesheet" href="../style/default.css">
     <link type="test/css" rel="stylesheet" href="../style/style.css">
     <link type="test/css" rel="stylesheet" href="../style/header.css">
-    <link type="test/css" rel="stylesheet" href="../style/footer.css">
     <link type="test/css" rel="stylesheet" href="../style/content.css">
+    <link type="test/css" rel="stylesheet" href="../style/profil.css">
+    <link type="test/css" rel="stylesheet" href="../style/footer.css">
     <link type="test/css" rel="stylesheet" href="../style/menuToggle.css">
 
     <script src="../js/jquery-2.2.0.min.js"></script>
-    <script src="../js/myPlugin.js"></script>
-    <script>
-        $(function(){
-            $('.article').hoverArticle();
-        });
-    </script>
+    <script src="../js/UI.js"></script>
     <script src="../js/jquery.scrollUp.min.js"></script>
     <script>
         $(function () {
@@ -52,8 +46,9 @@ if(isset($_POST['logout'])){
         });
     </script>
     <script src="../js/script.js"></script>
+    <script src="../js/inputProfil.js"></script>
     <script src="../js/menuToggle.js"></script>
-
+    <script src="../controller/profile.js"></script>
 </head>
 <body>
 
@@ -67,15 +62,8 @@ if(isset($_POST['logout'])){
         <li class="c-menu__item"><a href="index.php" class="c-menu__link transition">Accueil</a></li>
         <li class="c-menu__item"><a href="news.php" class="c-menu__link">Nouveautés</a></li>
         <li class="c-menu__item"><a href="all.php" class="c-menu__link">Tout les articles</a></li>
-        <?php
-        if(isset($_SESSION['login'])){
-            echo '<li class="c-menu__item"><a href="createArticle.php" class="c-menu__link transition">Créer un article</a></li>
-                    <li class="c-menu__item"><a href="profil.php" class="c-menu__link transition">Mon Compte</a></li>';
-        }
-        else{
-            echo '<li class="c-menu__item"><a href="login.php" class="c-menu__link">Se connecter</a></li>';
-        }
-        ?>
+        <li class="c-menu__item"><a href="createArticle.php" class="c-menu__link transition">Créer un article</a></li>
+        <li class="c-menu__item"><a href="profil.php" class="c-menu__link transition">Mon Compte</a></li>
     </ul>
 </nav>
 
@@ -92,15 +80,10 @@ if(isset($_POST['logout'])){
         </a>
     </div>
     <div class="imgHeader imgAcc">
-        <?php
-        if(isset($_SESSION['login'])){
-            echo '<a class="transition" href="profil.php">';
-        }
-        else{
-            echo '<a class="transition" href="login.php">';
-        }
-        ?>
-        <img src="../img/account.png" alt=""></a>
+        <a class="transition" href="profil.php">
+            <img class="accountHeader" src="../img/account.png" alt="">
+        </a>
+        <img class="pencil" src="../img/pencil.png" alt="">
     </div>
 
     <div class="menuWeb">
@@ -110,63 +93,41 @@ if(isset($_POST['logout'])){
         <hr class="hrHeader">
         <div class="menuWebAll"><a href="all.php">Tout les articles</a></div>
         <hr class="hrHeader">
-        <?php
-            if(isset($_SESSION['login'])){
-                echo '<div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
-                     <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>
-                     ';
-            }
-        else{
-            echo '<div class="menuWebAll"><a class="transition" href="login.php">Se connecter</a></div>';
-        }
-        ?>
+        <div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
+        <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>
     </div>
 </header>
 
-<main role="main" class="BebasBold">
-    <div class="newTheme">
-        <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; NOUVEAUTÉS</div>
-        <div class="hrRight"></div>
+<main role="main" class="SourceSansProRegular">
+    <div class="accountImg"><img class="circular" src="../img/accountImg.png" alt=""></div>
+    <div class="imgAcc">
+        <img class="pencil" src="../img/pencil.png" alt="">
     </div>
 
     <?php
-    $article = new article();
-    $row = $article->get6Articles($pdo);
-    $i = 0;
+    require_once("../config/conf.php");
+    require_once("../model/showProfile.php");
+    $profile = new profile();
+    $result = $profile->getProfile($pdo);
 
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
     ?>
 
-    <div class="newTheme">
-        <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; PLUS &nbsp; VUES</div>
-        <div class="hrRight"></div>
-    </div>
+    <form name="updateProfil" method="post" class="information" action="">
+        <div class="info">Pseudo</div> <div class="infoPhp editable" data-formtype="text" data-formname="username"><?php echo($result['pseudo'])?></div>
+        <div class="info">Nom</div> <div class="infoPhp editable" data-formtype="text" data-formname="firstname"><?php echo($result['firstname'])?></div>
+        <div class="info">Prénom</div> <div class="infoPhp editable" data-formtype="text" data-formname="lastname"><?php echo($result['lastname'])?></div>
+        <div class="info">Email</div> <div class="infoPhp editable" data-formtype="email" data-formname="email"><?php echo($result['mail'])?></div>
+        <div class="info">Mot de passe</div> <div class="infoPhp editable" data-formtype="password" data-formname="password"></div>
+        <div class="info">Date de naissance</div> <div class="infoPhp editable" data-formtype="date" data-formname="birthdate"><?php echo($result['birthdate'])?></div>
+        <div class="requiredForUpdate">Veuillez valider vos changements</div>
+        <input class="buttonMoreNSave" type="submit" value="Enregistrer les modifications">
+    </form>
 
-    <?php
-    $row = $article->getPopularArticles($pdo);
-    $i = 0;
+    <form method="POST" action="index.php">
+        <input type="submit" name="logout" value="Logout" class="buttonLogout">
+    </form>
 
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
-    ?>
-
+    <div class="errorUpdate"></div>
 </main>
 
 <footer class="footer SourceSansPro">
@@ -181,5 +142,6 @@ if(isset($_POST['logout'])){
         </div>
     </div>
 </footer>
+
 </body>
 </html>

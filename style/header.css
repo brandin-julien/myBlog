@@ -1,0 +1,109 @@
+/* BEGIN HEADER */
+.header {
+    height: 100px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    z-index: 11;
+}
+
+.imgHeader {
+    display: inline-block;
+}
+
+.header img {
+    width: 50%;
+    margin-top: 10px;
+}
+
+.header a {
+    text-decoration: none;
+}
+
+.imgMenu {
+    width: 10%;
+    float: left;
+    margin-left: 10px;
+}
+
+.imgMenuToggle {
+    width: 9%;
+    margin-right: 100%;
+    margin-left: 8px;
+}
+
+.imgHome {
+    width: 70%;
+    color: #bf9c7b;
+    margin-top: 35px;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.descriptionTitle {
+    font-family: 'BebasLight';
+    font-size: 1.5rem;
+}
+
+.imgHome a {
+    color: #bf9c7b;
+}
+
+.imgAcc {
+    width: 10%;
+    float: right;
+    margin-right: 10px;
+}
+
+/* END HEADER */
+
+/* Web menu */
+
+.hrHeader {
+    display: inline-block;
+    width: 1px;
+    height: 20px;
+    background: #bf9c7b;
+    vertical-align: middle;
+    margin-top: 10px;
+    border: none;
+}
+
+.menuWeb {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 45px auto 0 auto;
+    display: none;
+}
+
+.menuWebAll {
+    width: 15%;
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 1.5rem;
+}
+
+.menuWebAll a {
+    text-decoration: none;
+    color: #bf9c7b;
+    transition: all 1s ease-in-out;
+}
+
+.menuWebAll a:after{
+    content: '';
+    display: block;
+    margin: 5px auto auto auto;
+    height: 2px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+
+.menuWebAll a:hover:after {
+    width: 25%;
+    background: #bf9c7b;
+}
+
+/* End Web Menu */

@@ -1,0 +1,25 @@
+/* Inscription */
+
+form .input {
+    margin: 20px 0 15px 0;
+}
+
+form:first-of-type {
+    margin-top: 40px;
+}
+
+@media (min-width: 641px) {
+
+    form .input {
+        margin: 35px 0 15px 0;
+    }
+
+    form:first-of-type {
+        margin-top: 60px;
+    }
+}
+
+.error{
+    color: red;
+    margin-top: 35px;
+}

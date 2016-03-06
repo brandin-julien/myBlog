@@ -1,0 +1,14 @@
+.articleForm{
+    margin-top: 50px;
+}
+
+.articleArea{
+    width:75%;
+    height: 250px;
+}
+
+.requiredImg{
+    color: lightgrey;
+    font-size: 0.6rem;
+    margin-top: 3px;
+}

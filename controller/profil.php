@@ -2,19 +2,22 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 
-require_once("../model/register.php");
+session_start();
 require_once('../config/conf.php');
+require_once("../model/modifProfile.php");
 
 
 $errors = array();
 $isFormGood = true;
-$register = new register();
+$register = new profile();
+
+var_dump($_SESSION['id']);
 
 if(!empty($_POST))
 {
     if(!isset($_POST['username']) || strlen($_POST['username']) < 4)
     {
-        $errors['username'] = 'Saisissez un pseudo supÃ©rieur Ã  3 caractÃ¨res<br>';
+        $errors['username'] = 'Saisissez un pseudo supérieur à 3 caractères<br>';
         $isFormGood = false;
     }
 
@@ -26,13 +29,7 @@ if(!empty($_POST))
 
     if(!isset($_POST['password']) || strlen($_POST['password']) < 6)
     {
-        $errors['password'] = 'Saisissez un mdp supÃ©rieur Ã  5 caractÃ¨res<br>';
-        $isFormGood = false;
-    }
-
-    if(!isset($_POST['verifPassword']) || $_POST['verifPassword'] !== $_POST['password'])
-    {
-        $errors['verifPassword'] = 'Saisissez le mÃªme mot de passe que le prÃ©cÃ©dent<br>';
+        $errors['password'] = 'Saisissez un mdp supérieur à 5 caractères<br>';
         $isFormGood = false;
     }
 
@@ -44,7 +41,7 @@ if(!empty($_POST))
 
     if(!isset($_POST['firstname']) || strlen($_POST['firstname']) <= 2)
     {
-        $errors['firstname'] = 'Saisissez un prÃ©nom valide<br>';
+        $errors['firstname'] = 'Saisissez un prénom valide<br>';
         $isFormGood = false;
     }
 
@@ -71,10 +68,11 @@ if(!empty($_POST))
         $_POST['lastname'] = trim(htmlentities($_POST['lastname']));
         $_POST['email'] = trim(htmlentities($_POST['email']));
 
-        unset($_POST['verifPassword']);
         echo(json_encode(array('success'=>true, "user"=>$_POST)));
 
-        $insertUsers = $register->insertLogin($pdo);
+        $insertUsers = $register->updateProfile($pdo);
+
+        var_dump($insertUsers);
 
     }
 }

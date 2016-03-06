@@ -1,12 +1,12 @@
 <?php
+
 session_start();
 require_once('../config/conf.php');
-require_once('../controller/article.php');
+require_once('../model/showArticle.php');
 
-if(isset($_POST['logout'])){
-    unset($_SESSION['login']);
-    unset($_SESSION['id']);
-}
+$article = new article();
+$row = $article->getArticle($pdo);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +20,10 @@ if(isset($_POST['logout'])){
     <link type="test/css" rel="stylesheet" href="../style/header.css">
     <link type="test/css" rel="stylesheet" href="../style/footer.css">
     <link type="test/css" rel="stylesheet" href="../style/content.css">
+    <link type="test/css" rel="stylesheet" href="../style/article.css">
     <link type="test/css" rel="stylesheet" href="../style/menuToggle.css">
 
     <script src="../js/jquery-2.2.0.min.js"></script>
-    <script src="../js/myPlugin.js"></script>
-    <script>
-        $(function(){
-            $('.article').hoverArticle();
-        });
-    </script>
     <script src="../js/jquery.scrollUp.min.js"></script>
     <script>
         $(function () {
@@ -66,7 +61,7 @@ if(isset($_POST['logout'])){
         </li>
         <li class="c-menu__item"><a href="index.php" class="c-menu__link transition">Accueil</a></li>
         <li class="c-menu__item"><a href="news.php" class="c-menu__link">Nouveautés</a></li>
-        <li class="c-menu__item"><a href="all.php" class="c-menu__link">Tout les articles</a></li>
+        <li class="c-menu__item"><a href="all.php" class="c-menu__link">Les plus vues</a></li>
         <?php
         if(isset($_SESSION['login'])){
             echo '<li class="c-menu__item"><a href="createArticle.php" class="c-menu__link transition">Créer un article</a></li>
@@ -111,11 +106,11 @@ if(isset($_POST['logout'])){
         <div class="menuWebAll"><a href="all.php">Tout les articles</a></div>
         <hr class="hrHeader">
         <?php
-            if(isset($_SESSION['login'])){
-                echo '<div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
+        if(isset($_SESSION['login'])){
+            echo '<div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
                      <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>
                      ';
-            }
+        }
         else{
             echo '<div class="menuWebAll"><a class="transition" href="login.php">Se connecter</a></div>';
         }
@@ -123,50 +118,30 @@ if(isset($_POST['logout'])){
     </div>
 </header>
 
-<main role="main" class="BebasBold">
+<main role="main">
     <div class="newTheme">
         <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; NOUVEAUTÉS</div>
+        <div class="newThemeTitle BebasRegular">ARTICLE</div>
         <div class="hrRight"></div>
     </div>
+    <div class="articlePage">
+<?php
 
-    <?php
-    $article = new article();
-    $row = $article->get6Articles($pdo);
-    $i = 0;
+if($row != false){
+    echo '<img src="'.$row["image"].'" class="imgArticle">';
+?>
+        <div class="articleContent">
+<?php
 
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
-    ?>
-
-    <div class="newTheme">
-        <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; PLUS &nbsp; VUES</div>
-        <div class="hrRight"></div>
+    echo '<div class="articleTitle">' . $row["title"] . '</div>';
+    echo '<div class="articleDescription">' . $row["content"] . '</div>';
+}
+else{
+    echo 'Error d\'acces';
+}
+?>
+        </div>
     </div>
-
-    <?php
-    $row = $article->getPopularArticles($pdo);
-    $i = 0;
-
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
-    ?>
-
 </main>
 
 <footer class="footer SourceSansPro">
@@ -181,5 +156,6 @@ if(isset($_POST['logout'])){
         </div>
     </div>
 </footer>
+
 </body>
 </html>

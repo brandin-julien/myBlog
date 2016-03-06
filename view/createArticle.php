@@ -1,11 +1,8 @@
 <?php
 session_start();
-require_once('../config/conf.php');
-require_once('../controller/article.php');
-
-if(isset($_POST['logout'])){
-    unset($_SESSION['login']);
-    unset($_SESSION['id']);
+if(!isset($_SESSION['login'])){
+    header("Location: index.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -20,19 +17,14 @@ if(isset($_POST['logout'])){
     <link type="test/css" rel="stylesheet" href="../style/header.css">
     <link type="test/css" rel="stylesheet" href="../style/footer.css">
     <link type="test/css" rel="stylesheet" href="../style/content.css">
+    <link type="test/css" rel="stylesheet" href="../style/createArticle.css">
     <link type="test/css" rel="stylesheet" href="../style/menuToggle.css">
 
     <script src="../js/jquery-2.2.0.min.js"></script>
-    <script src="../js/myPlugin.js"></script>
-    <script>
-        $(function(){
-            $('.article').hoverArticle();
-        });
-    </script>
     <script src="../js/jquery.scrollUp.min.js"></script>
     <script>
-        $(function () {
-            $.scrollUp({
+$(function () {
+    $.scrollUp({
                 scrollName: 'scrollUp',
                 scrollDistance: 50,
                 scrollFrom: 'top',
@@ -53,6 +45,7 @@ if(isset($_POST['logout'])){
     </script>
     <script src="../js/script.js"></script>
     <script src="../js/menuToggle.js"></script>
+    <script src="../controller/createArticle.js"></script>
 
 </head>
 <body>
@@ -60,22 +53,15 @@ if(isset($_POST['logout'])){
 <nav id="c-menu--slide-left" class="c-menu c-menu--slide-left">
     <ul class="c-menu__items">
         <li><a href="#" class="c-menu__link">
-                <img class="onClick imgMenuToggle" src="../img/cross.png" alt="">
-                <div class="titleMenu">Séries.com</div>
-            </a>
+            <img class="onClick imgMenuToggle" src="../img/cross.png" alt="">
+            <div class="titleMenu">Séries.com</div>
+        </a>
         </li>
         <li class="c-menu__item"><a href="index.php" class="c-menu__link transition">Accueil</a></li>
         <li class="c-menu__item"><a href="news.php" class="c-menu__link">Nouveautés</a></li>
-        <li class="c-menu__item"><a href="all.php" class="c-menu__link">Tout les articles</a></li>
-        <?php
-        if(isset($_SESSION['login'])){
-            echo '<li class="c-menu__item"><a href="createArticle.php" class="c-menu__link transition">Créer un article</a></li>
-                    <li class="c-menu__item"><a href="profil.php" class="c-menu__link transition">Mon Compte</a></li>';
-        }
-        else{
-            echo '<li class="c-menu__item"><a href="login.php" class="c-menu__link">Se connecter</a></li>';
-        }
-        ?>
+        <li class="c-menu__item"><a href="all.php" class="c-menu__link">Les plus vues</a></li>
+        <li class="c-menu__item"><a href="createArticle.php" class="c-menu__link transition">Créer un article</a></li>
+        <li class="c-menu__item"><a href="profil.php" class="c-menu__link transition">Mon Compte</a></li>
     </ul>
 </nav>
 
@@ -91,17 +77,7 @@ if(isset($_POST['logout'])){
             <br><span class="descriptionTitle">TOUTES VOS SÉRIES EN ILLIMITÉ</span>
         </a>
     </div>
-    <div class="imgHeader imgAcc">
-        <?php
-        if(isset($_SESSION['login'])){
-            echo '<a class="transition" href="profil.php">';
-        }
-        else{
-            echo '<a class="transition" href="login.php">';
-        }
-        ?>
-        <img src="../img/account.png" alt=""></a>
-    </div>
+    <div class="imgHeader imgAcc"><a class="transition" href="profil.php"><img src="../img/account.png" alt=""></a></div>
 
     <div class="menuWeb">
         <div class="menuWebAll"><a class="transition" href="index.php">Accueil</a></div>
@@ -110,63 +86,32 @@ if(isset($_POST['logout'])){
         <hr class="hrHeader">
         <div class="menuWebAll"><a href="all.php">Tout les articles</a></div>
         <hr class="hrHeader">
-        <?php
-            if(isset($_SESSION['login'])){
-                echo '<div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
-                     <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>
-                     ';
-            }
-        else{
-            echo '<div class="menuWebAll"><a class="transition" href="login.php">Se connecter</a></div>';
-        }
-        ?>
-    </div>
+        <div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
+        <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>   </div>
 </header>
 
-<main role="main" class="BebasBold">
+<main role="main">
     <div class="newTheme">
         <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; NOUVEAUTÉS</div>
+        <div class="newThemeTitle BebasRegular">CRÉATION &nbsp; D'ARTICLE</div>
         <div class="hrRight"></div>
     </div>
 
-    <?php
-    $article = new article();
-    $row = $article->get6Articles($pdo);
-    $i = 0;
+    <form class="articleForm" method="post">
+        <div class="input">
+            <img src="../img/tag.png" class="imgForm" alt="">
+            <input class="inputForm" type="text" name="title" placeholder="Titre">
+        </div>
+        <textarea class="inputForm articleArea" name="content" placeholder="Écrivez le contenu de votre article"></textarea>
+        <div class="input">
+            <img src="../img/articleimage.png" class="imgForm" alt="">
+            <input class="inputForm" type="text" name="image" placeholder="Lien pour l'image">
+            <div class="requiredImg">(1920x1080 obligatoire)</div>
+        </div>
+        <input class="buttonMoreNSave" type="submit" value="Créer l'article">
+    </form>
 
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
-    ?>
-
-    <div class="newTheme">
-        <div class="hrLeft"></div>
-        <div class="newThemeTitle BebasRegular">LES &nbsp; PLUS &nbsp; VUES</div>
-        <div class="hrRight"></div>
-    </div>
-
-    <?php
-    $row = $article->getPopularArticles($pdo);
-    $i = 0;
-
-    while($i <= sizeof($row)-1){
-        $image = $row[$i]["image"];
-        echo '<div class="article"><a class="articleHover" href="showArticle.php?id=' . $row[$i]["id"] .'">'
-            . '<img src="'.$image.'" class="imgConfig">'
-            .'<div class="seriesTitle">' . $row[$i]["title"] . '</div>'
-            .'</a>
-            </div>';
-        $i++;
-    }
-    ?>
-
+    <div id="result"></div>
 </main>
 
 <footer class="footer SourceSansPro">
@@ -181,5 +126,6 @@ if(isset($_POST['logout'])){
         </div>
     </div>
 </footer>
+
 </body>
 </html>

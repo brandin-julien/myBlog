@@ -1,16 +1,15 @@
 $(function () {
     $('form').submit(function () {
-        $('#blocErreur').html('');
-        $('#blocSuccess').html('');
+        $('#result').html('');
         $.ajax({
-            url: '../controller/inscription.php',
+            url: '../controller/createArticle.php',
             method: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
 
             success: function(data){
-                var toPrint = 'Bienvenue '+data.user.username +'<meta http-equiv="refresh" content="0.5; URL=../view/login.php">';
-                $('#blocSuccess').html(toPrint);
+                var toPrint = "Article créé avec succès";
+                $('#result').html(toPrint);
             },
 
             error: function(data, status, error) {
@@ -20,7 +19,7 @@ $(function () {
                 for(var d in data.errors){
                     toPrint += d+' :'+data.errors[d]+'<br>';
                 }
-                $('#blocErreur').html(toPrint);
+                $('#result').html(toPrint);
             }
         });
         return false;

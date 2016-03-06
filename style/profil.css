@@ -1,0 +1,156 @@
+/* Profil */
+
+main[role="main"] .imgAcc{
+    display: none;
+}
+
+.accountHeader{
+    display: none;
+    cursor: pointer;
+}
+
+.accountImg {
+    display: inline-block;
+    margin: 50px 0 15px 0;
+}
+
+.circular {
+    width: 30%;
+    border-radius: 50%;
+    border: 3px solid #bf9c7b;
+}
+
+.information {
+    margin: 25px auto 0 auto;
+}
+
+.info {
+    text-align: left;
+    width: 30%;
+    display: inline-block;
+    font-size: 1.1rem;
+    color: white;
+    margin: 10px 0 0 0;
+}
+
+.infoPhp {
+    background: none;
+    border: none;
+    outline: none;
+    text-align: left;
+    display: inline-block;
+    width: 45%;
+    color: #898989;
+    border-bottom: 1px solid #898989;
+    padding-bottom: 5px;
+    font-size: 1rem;
+}
+
+input.infoPhp {
+    font-family: "Source Sans Pro Regular";
+    font-size: 1rem;
+    padding-bottom: 3px; /* This is adjust when it switching to div/input */
+    margin-top: -2px; /* This is adjust when it switching to div/input */
+}
+
+.buttonMoreNSave{
+    width:55%;
+}
+
+.buttonLogout{
+    display: block;
+    width: 25%;
+    margin: 25px auto 10px auto;
+    border-radius: 7px;
+    background: #bf9c7b;
+    border: #bf9c7b;
+    color: #2f2f2f;
+    font-size: 0.8rem;
+    padding: 8px;
+    outline: none;
+    cursor: pointer;
+}
+
+.requiredForUpdate{
+    margin: 40px 0 0 0;
+    color: white;
+    font-size: 1rem;
+    display: none;
+}
+
+.errorUpdate {
+    text-align: center;
+    color: red;
+    margin: 35px 25px 0 0;
+}
+
+@media (min-width: 641px) {
+    .information {
+        margin: 15px auto 0 auto;
+        max-width: 75%;
+    }
+
+    .infoPhp {
+        width: 55%;
+    }
+
+    .buttonMoreNSave {
+        width: 35%;
+    }
+
+    .circular {
+        width: 50%;
+    }
+
+    .buttonLogout{
+        width: 15%;
+    }
+
+}
+
+@media (min-width: 1025px) {
+
+    main[role="main"] .imgAcc{
+        display: block;
+    }
+
+    .imgAcc {
+        float: none;
+        width: 10%;
+        margin: 25px auto 0 auto;
+        cursor: pointer;
+    }
+
+    .pencil {
+        width: 25%;
+    }
+
+    .information {
+        max-width: 40%;
+        margin: 40px auto 50px auto;
+    }
+
+    .circular {
+        margin-top: 20px;
+    }
+
+    .buttonMoreNSave {
+        width: 40%;
+    }
+
+}
+
+@media (min-width: 1441px) {
+
+    .information {
+        max-width: 35%;
+    }
+
+    .buttonMoreNSave {
+        width: 30%;
+    }
+
+    .buttonLogout{
+        width: 5%;
+    }
+}

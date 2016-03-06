@@ -1,0 +1,86 @@
+.articlePage {
+    display: inline-block;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0 35px 0 35px;
+    color: white;
+}
+
+.imgArticle {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.articleContent {
+    width: 100%;
+}
+
+.articleTitle {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-top: 15px;
+}
+
+.articleSeason {
+    display: block;
+    color: #bf9c7b;
+    font-size: 1.2rem;
+}
+
+.articleDescription {
+    display: inline-block;
+    margin-top: 30px;
+    text-align: justify;
+    font-size: 1rem;
+}
+
+@media (min-width: 641px) {
+    .articleTitle{
+        font-size: 1.7rem;
+    }
+
+    .articleSeason{
+        font-size: 1.4rem;
+    }
+}
+
+@media (min-width: 1025px) {
+    .articlePage {
+        margin: 0 150px 0 150px;
+    }
+
+    .articleTitle{
+        font-size: 2.1rem;
+    }
+
+    .articleSeason{
+        font-size: 1.8rem;
+    }
+
+    .articleDescription {
+        display: inline-block;
+        margin-top: 30px;
+        text-align: justify;
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1441px) {
+    .articlePage {
+        margin: 0 300px 0 300px;
+    }
+
+    .articleTitle{
+        font-size: 2.5rem;
+    }
+
+    .articleSeason{
+        font-size: 2.2rem;
+    }
+
+    .articleDescription {
+        display: inline-block;
+        margin-top: 30px;
+        text-align: justify;
+        font-size: 1.1rem;
+    }
+}

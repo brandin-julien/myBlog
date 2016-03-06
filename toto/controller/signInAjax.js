@@ -1,26 +1,28 @@
 $(function () {
     $('form').submit(function () {
-        $('#blocErreur').html('');
-        $('#blocSuccess').html('');
+        $('#errorBlock').html('');
+        $('#successBlock').html('');
+
         $.ajax({
-            url: '../controller/inscription.php',
+            url: '../controller/signInForm.php',
             method: 'POST',
             data: $(this).serialize(),
             dataType: 'json',
 
             success: function(data){
-                var toPrint = 'Bienvenue '+data.user.username +'<meta http-equiv="refresh" content="0.5; URL=../view/login.php">';
-                $('#blocSuccess').html(toPrint);
+                var toPrint = 'pseudo : '+data.user.pseudo+'<br>';
+                toPrint += 'password : '+data.user.password+'<br>';
+                toPrint += "Connecting...";
+                $('#successBlock').html(toPrint+'<meta http-equiv="refresh" content="2; URL= homepage.php">');
             },
 
             error: function(data, status, error) {
                 var toPrint = '';
-
                 data = JSON.parse(data.responseText);
                 for(var d in data.errors){
                     toPrint += d+' :'+data.errors[d]+'<br>';
                 }
-                $('#blocErreur').html(toPrint);
+                $('#errorBlock').html(toPrint);
             }
         });
         return false;
