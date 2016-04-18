@@ -3,7 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 
 require_once("../model/register.php");
-require_once('../config/conf.php');
+require_once('../utils/dbconnection.php');
 
 
 $errors = array();

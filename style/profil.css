@@ -4,11 +4,6 @@ main[role="main"] .imgAcc{
     display: none;
 }
 
-.accountHeader{
-    display: none;
-    cursor: pointer;
-}
-
 .accountImg {
     display: inline-block;
     margin: 50px 0 15px 0;
@@ -82,6 +77,11 @@ input.infoPhp {
     text-align: center;
     color: red;
     margin: 35px 25px 0 0;
+}
+
+.accountHeader{
+    display: none;
+    cursor: pointer;
 }
 
 @media (min-width: 641px) {

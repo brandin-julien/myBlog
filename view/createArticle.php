@@ -12,13 +12,13 @@ if(!isset($_SESSION['login'])){
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Mon blog sur les séries</title>
 
-    <link type="test/css" rel="stylesheet" href="../style/default.css">
-    <link type="test/css" rel="stylesheet" href="../style/style.css">
-    <link type="test/css" rel="stylesheet" href="../style/header.css">
-    <link type="test/css" rel="stylesheet" href="../style/footer.css">
-    <link type="test/css" rel="stylesheet" href="../style/content.css">
-    <link type="test/css" rel="stylesheet" href="../style/createArticle.css">
-    <link type="test/css" rel="stylesheet" href="../style/menuToggle.css">
+    <link type="text/css" rel="stylesheet" href="../style/default.css">
+    <link type="text/css" rel="stylesheet" href="../style/style.css">
+    <link type="text/css" rel="stylesheet" href="../style/header.css">
+    <link type="text/css" rel="stylesheet" href="../style/footer.css">
+    <link type="text/css" rel="stylesheet" href="../style/content.css">
+    <link type="text/css" rel="stylesheet" href="../style/createArticle.css">
+    <link type="text/css" rel="stylesheet" href="../style/menuToggle.css">
 
     <script src="../js/jquery-2.2.0.min.js"></script>
     <script src="../js/jquery.scrollUp.min.js"></script>
@@ -59,7 +59,7 @@ $(function () {
         </li>
         <li class="c-menu__item"><a href="index.php" class="c-menu__link transition">Accueil</a></li>
         <li class="c-menu__item"><a href="news.php" class="c-menu__link">Nouveautés</a></li>
-        <li class="c-menu__item"><a href="all.php" class="c-menu__link">Les plus vues</a></li>
+        <li class="c-menu__item"><a href="all.php" class="c-menu__link">Tous les articles</a></li>
         <li class="c-menu__item"><a href="createArticle.php" class="c-menu__link transition">Créer un article</a></li>
         <li class="c-menu__item"><a href="profil.php" class="c-menu__link transition">Mon Compte</a></li>
     </ul>
@@ -82,9 +82,9 @@ $(function () {
     <div class="menuWeb">
         <div class="menuWebAll"><a class="transition" href="index.php">Accueil</a></div>
         <hr class="hrHeader">
-        <div class="menuWebAll"><a href="news.php">Nouveautés</a></div>
+        <div class="menuWebAll"><a href="#">Nouveautés</a></div>
         <hr class="hrHeader">
-        <div class="menuWebAll"><a href="all.php">Tout les articles</a></div>
+        <div class="menuWebAll"><a href="#">Tous les articles</a></div>
         <hr class="hrHeader">
         <div class="menuWebAll"><a class="transition" href="createArticle.php">Créer un article</a></div><hr class="hrHeader">
         <div class="menuWebAll"><a class="transition" href="profil.php">Mon Compte</a></div>   </div>

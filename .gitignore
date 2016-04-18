@@ -5,5 +5,8 @@ Thumbs.db
 *-sublime-*
 *.swp
 .swp
-config/*
+<<<<<<< HEAD
+=======
+config/dbconf.php
+>>>>>>> origin/master
 

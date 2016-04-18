@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 06 Mars 2016 à 21:59
+-- Généré le :  Dim 06 Mars 2016 à 23:37
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -75,13 +75,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `pseudo`, `password`, `mail`, `lastname`, `firstname`, `birthdate`) VALUES
 (2, 'pira', 'f0e8e030141c892b6bd7044a1b2a1364bc674dbd', 'pira@pira.com', '', '0', '0000-00-00'),
 (5, 'toto', '532f4c5b76fc83c4dc62ed85b5f66f2b3223a650', 'toto@42.com', '', '0', '0000-00-00'),
-(6, 'alexandre', '27d6bea255689c803b15a552c7170d1511fd3ced', '', '', '0', '0000-00-00'),
+(6, 'alexandre', '27d6bea255689c803b15a552c7170d1511fd3ced', '', 'andre', 'alex', '0000-00-00'),
 (7, 'loli', '82b5a557cb0d39181fca8861972cf556894bc838', 'test@test.fr', 'brandin', 'julien', '2016-02-17'),
 (9, 'bloublou', '4771603f0b9b094be9d63087b801a5fb9edff39d', 'julien.brandin@supinternet.fr', 'Alexandre', 'PICARD', '2014-10-29'),
 (10, 'toto', '1aa452cd21d7a61e5c91228b95c18d59cbc0630e', 'toto@gmail.com', 'aze', 'rty', '2016-02-09'),
 (12, 'julien77', 'e50fb31a4bedc14fcccedc566ce3d6ef5d754f40', 'azerty@gmail.com', 'Brandin', 'Julien', '2000-11-11'),
 (30, 'goju', '1aa452cd21d7a61e5c91228b95c18d59cbc0630e', 'julienbrandin@sfr.fr', 'Brandin', 'Julien', '1995-11-04'),
-(31, 'root', '6dd99e2d48fb9b0be8277b5cb28fac4c8afcce1f', 'root@root.fr', 'root', 'root', '1995-12-31');
+(31, 'root', '6dd99e2d48fb9b0be8277b5cb28fac4c8afcce1f', 'root', 'root', 'root', '1995-12-31');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

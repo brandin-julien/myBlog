@@ -1,6 +1,6 @@
 <?php
 
-require_once('../config/conf.php');
+require_once('../utils/dbconnection.php');
 
 class createArticle{
 

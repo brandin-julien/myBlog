@@ -12,13 +12,13 @@ if(isset($_SESSION['login'])){
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no"/>
     <title>Mon blog sur les séries</title>
 
-    <link type="test/css" rel="stylesheet" href="../style/default.css">
-    <link type="test/css" rel="stylesheet" href="../style/style.css">
-    <link type="test/css" rel="stylesheet" href="../style/header.css">
-    <link type="test/css" rel="stylesheet" href="../style/content.css">
-    <link type="test/css" rel="stylesheet" href="../style/footer.css">
-    <link type="test/css" rel="stylesheet" href="../style/inscription.css">
-    <link type="test/css" rel="stylesheet" href="../style/menuToggle.css">
+    <link type="text/css" rel="stylesheet" href="../style/default.css">
+    <link type="text/css" rel="stylesheet" href="../style/style.css">
+    <link type="text/css" rel="stylesheet" href="../style/header.css">
+    <link type="text/css" rel="stylesheet" href="../style/content.css">
+    <link type="text/css" rel="stylesheet" href="../style/footer.css">
+    <link type="text/css" rel="stylesheet" href="../style/inscription.css">
+    <link type="text/css" rel="stylesheet" href="../style/menuToggle.css">
 
     <script src="../js/jquery-2.2.0.min.js"></script>
     <script src="../js/jquery.scrollUp.min.js"></script>
@@ -60,7 +60,7 @@ if(isset($_SESSION['login'])){
         </li>
         <li class="c-menu__item"><a href="index.php" class="c-menu__link transition">Accueil</a></li>
         <li class="c-menu__item"><a href="#" class="c-menu__link">Nouveautés</a></li>
-        <li class="c-menu__item"><a href="#" class="c-menu__link">Les plus vues</a></li>
+        <li class="c-menu__item"><a href="#" class="c-menu__link">Tous les articles</a></li>
         <li class="c-menu__item"><a href="#" class="c-menu__link">Catégories</a></li>
     </ul>
 </nav>
@@ -84,7 +84,7 @@ if(isset($_SESSION['login'])){
         <hr class="hrHeader">
         <div class="menuWebAll"><a href="#">Nouveautés</a></div>
         <hr class="hrHeader">
-        <div class="menuWebAll"><a href="#">Populaires</a></div>
+        <div class="menuWebAll"><a href="#">Tous les articles</a></div>
         <hr class="hrHeader">
         <div class="menuWebAll"><a class="transition" href="login.php">Se connecter</a></div>
     </div>

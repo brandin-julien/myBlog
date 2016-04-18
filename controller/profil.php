@@ -3,15 +3,13 @@ header('Access-Control-Allow-Origin: *');
 header('Content-type: application/json');
 
 session_start();
-require_once('../config/conf.php');
+require_once('../utils/dbconnection.php');
 require_once("../model/modifProfile.php");
 
 
 $errors = array();
 $isFormGood = true;
 $register = new profile();
-
-var_dump($_SESSION['id']);
 
 if(!empty($_POST))
 {
@@ -71,9 +69,6 @@ if(!empty($_POST))
         echo(json_encode(array('success'=>true, "user"=>$_POST)));
 
         $insertUsers = $register->updateProfile($pdo);
-
-        var_dump($insertUsers);
-
     }
 }
 else
